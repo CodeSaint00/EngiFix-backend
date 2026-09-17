@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import FaultReport
+from .serializers import FaultReportSerializer
 
-# Create your views here.
+class FaultReportViewSet(viewsets.ModelViewSet):
+    queryset = FaultReport.objects.all()
+    serializer_class = FaultReportSerializer
