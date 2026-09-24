@@ -6,6 +6,7 @@ class FaultReportSerializer(serializers.ModelSerializer):
         model = FaultReport
         fields = [
             "id", "reporter", "equipment", "assigned_to",
-            "description", "priority", "status", "created_at", "updated_at"
+            "description", "priority", "status", "image",
+            "created_at", "updated_at", "resolved_at"
         ]
-        read_only_fields = ["reporter", "created_at", "updated_at"]
+        read_only_fields = ["reporter", "created_at", "updated_at", "resolved_at"]

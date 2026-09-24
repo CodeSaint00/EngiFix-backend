@@ -17,7 +17,7 @@ class FaultReport(models.Model):
         MEDIUM = "MEDIUM", "Medium"
         HIGH = "HIGH", "High"
         CRITICAL = "CRITICAL", "Critical"
-
+    
     reporter = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reported_faults"
     )
@@ -31,6 +31,9 @@ class FaultReport(models.Model):
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.NEW)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to="fault_images/", null=True, blank=True)
+    resolved_at = models.DateTimeField(null=True, blank=True)
+
 
     def __str__(self):
         return f"{self.equipment} - {self.status}"
