@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from locations.models import Location
 
 class Equipment(models.Model):
     class Condition(models.TextChoices):
@@ -8,7 +9,13 @@ class Equipment(models.Model):
         FAULTY = "FAULTY", "Faulty"
         DECOMMISSIONED = "DECOMMISSIONED", "Decommissioned"
 
-    location = models.CharField(max_length=200)
+    location = models.ForeignKey(
+    Location,
+    on_delete=models.PROTECT,
+    null=True,
+    blank=True,
+    related_name="equipment",
+)
     name = models.CharField(max_length=150)
     category = models.CharField(max_length=100)
     serial_number = models.CharField(max_length=100, unique=True, blank=True)
