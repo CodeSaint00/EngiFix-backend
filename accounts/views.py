@@ -24,7 +24,8 @@ class MeView(APIView):
             "username": user.username,
             "role": user.role,
             "is_verified": user.is_verified,
-            "reg_number": user.reg_number
+            "reg_number": user.reg_number,
+            "department": user.department_id,
         })
 
 class TechnicianListView(generics.ListAPIView):

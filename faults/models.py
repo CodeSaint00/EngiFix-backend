@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from equipment.models import Equipment
+from locations.models import Location
 
 class FaultReport(models.Model):
     class Status(models.TextChoices):
@@ -33,6 +34,13 @@ class FaultReport(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="fault_images/", null=True, blank=True)
     resolved_at = models.DateTimeField(null=True, blank=True)
+    location = models.ForeignKey(
+        Location,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="faults",
+    )
 
 
     def __str__(self):
